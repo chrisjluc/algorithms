@@ -25,17 +25,18 @@ from graphs.shortest_paths import dijkstra
 from graphs import util
 from graphs.graph import *
 
-# Helper method to find an augmenting path in the graph. An augmenting path is a path whose
-# flow can be increased (none of the edges in the path has a maximized flow).
-#
-# @param graph - A graph object.
-# @param capacities - A dictionary of tuples (source, target) representing edges, to their capacities
-# @param flows - A dictionary of tuples (source, target) representing edges, to their current flows
-# @param source - The source node.
-# @param sink - The sink node.
-# @param path - The current path (recursively builds it).
-# @reutrn res - The augmenting path.
 def _findAugmentingPath (graph, capacities, flows, source, sink, path):
+    """Helper method to find an augmenting path in the graph. An augmenting path is a path whose
+    flow can be increased (none of the edges in the path has a maximized flow).
+
+    @param graph - A graph object.
+    @param capacities - A dictionary of tuples (source, target) representing edges, to their capacities
+    @param flows - A dictionary of tuples (source, target) representing edges, to their current flows
+    @param source - The source node.
+    @param sink - The sink node.
+    @param path - The current path (recursively builds it).
+    @return res - The augmenting path.
+    """
     if source == sink:
         return path
     for b in graph.adjNodes[source]:
@@ -45,13 +46,14 @@ def _findAugmentingPath (graph, capacities, flows, source, sink, path):
             if res != None:
                 return res
 
-# Implements the Ford-Fulkerson maximum-flow algorithm.
-#
-# @param graph - A graph object.
-# @param source - The source node.
-# @param sink - The sink node.
-# @return The maximum flow through the network.
 def fordFulkerson (graph, source, sink):
+    """Implements the Ford-Fulkerson maximum-flow algorithm.
+
+    @param graph - A graph object.
+    @param source - The source node.
+    @param sink - The sink node.
+    @return The maximum flow through the network.
+    """
     # Create the network. We can't use the original graph as we must add reverse edges.
     network = Graph()
     for i in graph.nodes:

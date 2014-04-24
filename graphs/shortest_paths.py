@@ -13,16 +13,17 @@ http://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
 from graphs.util import MAX_WEIGHT
 from Queue import PriorityQueue
 
-# Implements dijkstra's algorithm for a weighted graph. If the graph is in
-# adjacency matrix representation, convert it to a Graph object with
-# util.convertAdjToGraph. Note that this algorithm does not work for
-# graphs whose weights may contain negative numbers.
-# 
-# @param graph - A graph object
-# @param source - The source node
-# @return dist - An dictionary of shortest path lengths from the source node to 
-#   all other nodes.
 def dijkstra(graph, source):
+    """Implements dijkstra's algorithm for a weighted graph. If the graph is in
+    adjacency matrix representation, convert it to a Graph object with
+    util.convertAdjToGraph. Note that this algorithm does not work for
+    graphs whose weights may contain negative numbers.
+
+    @param graph - A graph object
+    @param source - The source node
+    @return dist - An dictionary of shortest path lengths from the source node to 
+        all other nodes.
+    """
     dist = {n: MAX_WEIGHT for n in graph.nodes}
     prev = dict()
 
@@ -44,17 +45,18 @@ def dijkstra(graph, source):
 
     return dist, prev   
 
-# Implements the Bellman-Ford algorithm. This is slower than Dijkstra's algorithm but is
-# more versatile as it can handle negative edge weights. If the graph has a cycle whose numbers
-# sum to a negative number, the shortest path can continuously be reduced by one more trip around
-# this cycle. This algorithm can detect if a cycle like that exists and throws an exception if it does.
-#
-# @throws Exception - Throws an exception if the graph contains a negative edge weight cycle.
-# @param graph - A graph object
-# @param source - The source node
-# @return dist - An dictionary of shortest path lengths from the source node to 
-#   all other nodes.
 def bellmanFord(graph, source):
+    """Implements the Bellman-Ford algorithm. This is slower than Dijkstra's algorithm but is
+    more versatile as it can handle negative edge weights. If the graph has a cycle whose numbers
+    sum to a negative number, the shortest path can continuously be reduced by one more trip around
+    this cycle. This algorithm can detect if a cycle like that exists and throws an exception if it does.
+    
+    @throws Exception - Throws an exception if the graph contains a negative edge weight cycle.
+    @param graph - A graph object
+    @param source - The source node
+    @return dist - An dictionary of shortest path lengths from the source node to 
+        all other nodes.
+    """
     L = len(graph.nodes)
     dist = {n: MAX_WEIGHT for n in graph.nodes}
     prev = dict()
@@ -76,13 +78,13 @@ def bellmanFord(graph, source):
 
     return dist, prev
 
-# Implements the Floyd-Warshall all-pairs shortest path algorithm. This runs slower than
-# Dijkstra's algorithm and should be used for a quick test or for small datasets (n < 100).
-# This runs in O(n^3).
-#
-# @param graph - A graph object.
-# @return sp - A 2D array where sp[i][j] contains the shortest path from i to j.
 def floydWarshall(graph):
+    """Implements the Floyd-Warshall all-pairs shortest path algorithm. This runs slower than
+    Dijkstra's algorithm and should be used for a quick test or for small datasets (n < 100).
+
+    @param graph - A graph object.
+    @return sp - A 2D array where sp[i][j] contains the shortest path from i to j.
+    """
     L = len(graph.nodes)
     sp = [[MAX_WEIGHT for x in range(L)] for x in range(L)] 
 

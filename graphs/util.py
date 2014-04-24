@@ -2,11 +2,12 @@ from graph import *
 
 MAX_WEIGHT = 1000000000
 
-# Converts an adjacency matrix representation to a Graph representation.
-#
-# @param adj - An adjacency matrix represented using a 2D array.
-# @return gr - The converted Graph object.
 def convertAdjToGraph (adj):
+    """Converts an adjacency matrix representation to a Graph representation.
+
+    @param adj - An adjacency matrix represented using a 2D array.
+    @return gr - The converted Graph object.
+    """
     gr = Graph()
     L = len(adj)
 
@@ -20,13 +21,14 @@ def convertAdjToGraph (adj):
 
     return gr
 
-# Reconstructs the path to the target from a prev dictionary created by one of the
-# shortest path algorithms. 
-#
-# @param prev - The map of nodes to previous nodes.
-# @param target - The target node.
-# @return path - The path to the node from the source.
 def getPathFromPrev (prev, target):
+    """Reconstructs the path to the target from a prev dictionary created by one of the
+    shortest path algorithms. 
+
+    @param prev - The map of nodes to previous nodes.
+    @param target - The target node.
+    @return path - The path to the node from the source.
+    """
     u = target
     path = []
 
@@ -37,12 +39,13 @@ def getPathFromPrev (prev, target):
     path.reverse()
     return path
 
-# Converts a list of nodes representing a path to a list of edges.
-# For example, ['a', 'b', 'c', 'd'] becomes [('a', 'b'), ('b', 'c'), ('c', 'd')]
-#
-# @param path - The path represented as a list of nodes.
-# @return edgeList - The path represented as a list of edges.
 def getEdgeListFromPath (path):
+    """Converts a list of nodes representing a path to a list of edges.
+    For example, ['a', 'b', 'c', 'd'] becomes [('a', 'b'), ('b', 'c'), ('c', 'd')]
+
+    @param path - The path represented as a list of nodes.
+    @return edgeList - The path represented as a list of edges.
+    """
     edgeList = []
     L = len(path)
     if L <= 1: 
