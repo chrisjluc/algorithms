@@ -19,3 +19,31 @@ def convertAdjToGraph (adj):
 				gr.addEdge(i, j, adj[i][j])
 
 	return gr
+
+# Reconstructs the path to the target from a prev dictionary created by one of the
+# shortest path algorithms. 
+#
+# @param prev - The map of nodes to previous nodes.
+# @param target - The target node.
+# @return path - The path to the node from the source.
+def getPathFromPrev (prev, target):
+	u = target
+	path = []
+
+	while u in prev:
+		u = prev[u]
+		path.append(u)
+
+	path.reverse()
+	return path
+
+def getEdgeListFromPath (path):
+	edgeList = []
+	L = len(path)
+	if L <= 1: 
+		return edgeList
+
+	for i in range(L-1):
+		edgeList.append((path[i], path[i+1]))
+
+	return edgeList

@@ -43,3 +43,13 @@ class TestConvertAdjToGraph(unittest.TestCase):
             for j in range(L):
                 if adjGraph[i][j] != 0:
                     self.assertEqual(adjGraph[i][j], self.graph.weights[(i, j)])
+
+class TestGetEdgeListFromPath(unittest.TestCase):
+    def test_singleNodePath(self):
+        path = ['a']
+        self.assertEqual(util.getEdgeListFromPath(path), [])
+
+    def test_multiNodePath(self):
+        path = ['a', 'b', 'c', 'd', 'e']
+        edgeList = [('a', 'b'), ('b', 'c'), ('c', 'd'), ('d', 'e')]
+        self.assertEqual(util.getEdgeListFromPath(path), edgeList)

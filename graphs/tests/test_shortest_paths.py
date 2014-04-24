@@ -31,16 +31,24 @@ class TestDijkstrasAlgorithm(unittest.TestCase):
 		self.graph = util.convertAdjToGraph(adjGraph)
 
 	def test_lengths(self):
-		lengths = dijkstra(self.graph, 0)
+		(lengths, prev) = dijkstra(self.graph, 0)
 		self.assertEqual(lengths, shortestPathsFrom0)
+
+	def test_path(self):
+		(lengths, prev) = dijkstra(self.graph, 0)
+		self.assertEqual(util.getPathFromPrev(prev, 8), [0, 1, 2])
 
 class TestBellmanFord(unittest.TestCase):
 	def setUp(self):
 		self.graph = util.convertAdjToGraph(adjGraph)
 
 	def test_lengths(self):
-		lengths = bellmanFord(self.graph, 0)
+		(lengths, prev) = bellmanFord(self.graph, 0)
 		self.assertEqual(lengths, shortestPathsFrom0)
+
+	def test_path(self):
+		(lengths, prev) = bellmanFord(self.graph, 0)
+		self.assertEqual(util.getPathFromPrev(prev, 8), [0, 1, 2])
 
 class TestFloydWarshall(unittest.TestCase):
 	def setUp(self):
