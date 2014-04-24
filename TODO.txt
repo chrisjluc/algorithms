@@ -1,0 +1,33 @@
+Strings
+    - Rabin-Karp algorithm
+    - Knuth-Morris-Pratt Algorithm
+
+Graphs
+    - Minimum spanning trees
+        - Prim's algorithm
+        - Kruskal's algorithm
+    - Maximum bipartite matching
+    - Max flow
+        - Edmond-Karp algorithm
+        - Push-relabel algorithm
+    - Coloring
+    - Hungarian algorithm
+
+DP
+    - Travelling salesman
+    - Knapsack algorithm
+    - Coin change algorithm
+    - Longest increasing subsequence, longest common subsequence
+
+Geometry
+    - Convex hull algorithm
+    - Point-in-polygon
+    - Closest pair of points algorithm
+ 
+Other Math
+    - Prime sieves
+    - Simplex algorithm
+    - Modular exponentiation
+
+Sorting
+    - All popular sorts
