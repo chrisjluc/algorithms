@@ -1,7 +1,7 @@
 """This module contains the following shortest path algorithms:
-	- Dijjkstra's (with PriorityQueue) - O(E + V*logV)
-	- Bellman-Ford - O(V*E)
-	- Floyd-Warshall - O(V^3)
+    - Dijjkstra's (with PriorityQueue) - O(E + V*logV)
+    - Bellman-Ford - O(V*E)
+    - Floyd-Warshall - O(V^3)
 
 The shortest path of a graph is the path between two nodes such that the
 sum of the weights of the edges in the path is minimized. 
@@ -21,28 +21,28 @@ from Queue import PriorityQueue
 # @param graph - A graph object
 # @param source - The source node
 # @return dist - An dictionary of shortest path lengths from the source node to 
-# 	all other nodes.
+#   all other nodes.
 def dijkstra(graph, source):
-	dist = {n: MAX_WEIGHT for n in graph.nodes}
-	prev = dict()
+    dist = {n: MAX_WEIGHT for n in graph.nodes}
+    prev = dict()
 
-	dist[source] = 0
+    dist[source] = 0
 
-	pq = PriorityQueue()
-	for k, v in dist.iteritems():
-		pq.put((v, k))
+    pq = PriorityQueue()
+    for k, v in dist.iteritems():
+        pq.put((v, k))
 
-	while not pq.empty():
-		n = pq.get()[1]
+    while not pq.empty():
+        n = pq.get()[1]
 
-		for i in graph.adjNodes[n]:
-			prop = dist[n] + graph.weights[(n, i)]
-			if prop < dist[i]:
-				dist[i] = prop
-				prev[i] = n
-				pq.put((prop, i))
+        for i in graph.adjNodes[n]:
+            prop = dist[n] + graph.weights[(n, i)]
+            if prop < dist[i]:
+                dist[i] = prop
+                prev[i] = n
+                pq.put((prop, i))
 
-	return dist, prev	
+    return dist, prev   
 
 # Implements the Bellman-Ford algorithm. This is slower than Dijkstra's algorithm but is
 # more versatile as it can handle negative edge weights. If the graph has a cycle whose numbers
@@ -53,28 +53,28 @@ def dijkstra(graph, source):
 # @param graph - A graph object
 # @param source - The source node
 # @return dist - An dictionary of shortest path lengths from the source node to 
-# 	all other nodes.
+#   all other nodes.
 def bellmanFord(graph, source):
-	L = len(graph.nodes)
-	dist = {n: MAX_WEIGHT for n in graph.nodes}
-	prev = dict()
+    L = len(graph.nodes)
+    dist = {n: MAX_WEIGHT for n in graph.nodes}
+    prev = dict()
 
-	dist[source] = 0
+    dist[source] = 0
 
-	for i in range(L):
-		for a, adjs in graph.adjNodes.iteritems():
-			for b in adjs:
-				if dist[a] + graph.weights[(a, b)] < dist[b]:
-					dist[b] = dist[a] + graph.weights[(a, b)]
-					prev[b] = a
+    for i in range(L):
+        for a, adjs in graph.adjNodes.iteritems():
+            for b in adjs:
+                if dist[a] + graph.weights[(a, b)] < dist[b]:
+                    dist[b] = dist[a] + graph.weights[(a, b)]
+                    prev[b] = a
 
-	# Check for negative-weight cycles.
-	for a, adjs in graph.adjNodes.iteritems():
-		for b in adjs:
-			if dist[a] + graph.weights[(a, b)] < dist[b]:
-				raise Exception('Error: This graph has a negative edge weight cycle.')
+    # Check for negative-weight cycles.
+    for a, adjs in graph.adjNodes.iteritems():
+        for b in adjs:
+            if dist[a] + graph.weights[(a, b)] < dist[b]:
+                raise Exception('Error: This graph has a negative edge weight cycle.')
 
-	return dist, prev
+    return dist, prev
 
 # Implements the Floyd-Warshall all-pairs shortest path algorithm. This runs slower than
 # Dijkstra's algorithm and should be used for a quick test or for small datasets (n < 100).
@@ -83,18 +83,18 @@ def bellmanFord(graph, source):
 # @param graph - A graph object.
 # @return sp - A 2D array where sp[i][j] contains the shortest path from i to j.
 def floydWarshall(graph):
-	L = len(graph.nodes)
-	sp = [[MAX_WEIGHT for x in range(L)] for x in range(L)] 
+    L = len(graph.nodes)
+    sp = [[MAX_WEIGHT for x in range(L)] for x in range(L)] 
 
-	for i in range(L):
-		sp[i][i] = 0
-	for a, adjs in graph.adjNodes.iteritems():
-		for b in adjs:
-			sp[a][b] = graph.weights[(a, b)]
+    for i in range(L):
+        sp[i][i] = 0
+    for a, adjs in graph.adjNodes.iteritems():
+        for b in adjs:
+            sp[a][b] = graph.weights[(a, b)]
 
-	for k in range(L):
-		for i in range(L):
-			for j in range(L):
-				sp[i][j] = min(sp[i][j], sp[i][k] + sp[k][j])
+    for k in range(L):
+        for i in range(L):
+            for j in range(L):
+                sp[i][j] = min(sp[i][j], sp[i][k] + sp[k][j])
 
-	return sp
+    return sp

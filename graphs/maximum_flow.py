@@ -1,7 +1,7 @@
 """This module contains the following maximum flow algorithms:
-	- Ford-Fulkerson - O(E*f), where f is the maximum flow.
-	- (TODO) Edmond-Karp - O(V*E^2)
-	- (TODO) Push-relabel - O(E*V^2)
+    - Ford-Fulkerson - O(E*f), where f is the maximum flow.
+    - (TODO) Edmond-Karp - O(V*E^2)
+    - (TODO) Push-relabel - O(E*V^2)
 
 Given a set of nodes and edges that connect them, and "capacities" assigned to each edge,
 the maximum flow problem asks what is the maximum amount of X that you can route from one
@@ -36,14 +36,14 @@ from graphs.graph import *
 # @param path - The current path (recursively builds it).
 # @reutrn res - The augmenting path.
 def _findAugmentingPath (graph, capacities, flows, source, sink, path):
-	if source == sink:
-		return path
-	for b in graph.adjNodes[source]:
-		residual = capacities[(source, b)] - flows[(source, b)]
-		if residual > 0 and (source, b) not in util.getEdgeListFromPath(path):
-			res = _findAugmentingPath(graph, capacities, flows, b, sink, path + [b])
-			if res != None:
-				return res
+    if source == sink:
+        return path
+    for b in graph.adjNodes[source]:
+        residual = capacities[(source, b)] - flows[(source, b)]
+        if residual > 0 and (source, b) not in util.getEdgeListFromPath(path):
+            res = _findAugmentingPath(graph, capacities, flows, b, sink, path + [b])
+            if res != None:
+                return res
 
 # Implements the Ford-Fulkerson maximum-flow algorithm.
 #
@@ -52,38 +52,38 @@ def _findAugmentingPath (graph, capacities, flows, source, sink, path):
 # @param sink - The sink node.
 # @return The maximum flow through the network.
 def fordFulkerson (graph, source, sink):
-	# Create the network. We can't use the original graph as we must add reverse edges.
-	network = Graph()
-	for i in graph.nodes:
-		network.addNode(i)
-	for (a, b) in graph.weights:
-		network.addEdge(a, b, graph.weights[(a, b)])
-		network.addEdge(b, a, 0)
-	capacities = network.weights
+    # Create the network. We can't use the original graph as we must add reverse edges.
+    network = Graph()
+    for i in graph.nodes:
+        network.addNode(i)
+    for (a, b) in graph.weights:
+        network.addEdge(a, b, graph.weights[(a, b)])
+        network.addEdge(b, a, 0)
+    capacities = network.weights
 
-	# Initialize flows to zero.
-	flows = {(a, b): 0 for (a, b) in network.weights}
+    # Initialize flows to zero.
+    flows = {(a, b): 0 for (a, b) in network.weights}
 
-	# Find the first augmenting path to add flow.
-	path = _findAugmentingPath(network, capacities, flows, source, sink, [source])
+    # Find the first augmenting path to add flow.
+    path = _findAugmentingPath(network, capacities, flows, source, sink, [source])
 
-	# Continue until no more augmenting paths can be found.
-	while path != None:
-		residuals = []
-		for i in range(len(path) - 1):
-			edge = (path[i], path[i+1])
-			residuals.append(capacities[edge] - flows[edge])
+    # Continue until no more augmenting paths can be found.
+    while path != None:
+        residuals = []
+        for i in range(len(path) - 1):
+            edge = (path[i], path[i+1])
+            residuals.append(capacities[edge] - flows[edge])
 
-		# Maximize the flow through this path by filling up the smallest residual edge.
-		additionalFlow = min(residuals)
+        # Maximize the flow through this path by filling up the smallest residual edge.
+        additionalFlow = min(residuals)
 
-		# Add flow to the forward edges, subtract flow from the reverse edges.
-		for i in range(len(path) - 1):
-			edge = (path[i], path[i+1])
-			flows[edge] += additionalFlow
-			flows[(edge[1], edge[0])] -= additionalFlow
+        # Add flow to the forward edges, subtract flow from the reverse edges.
+        for i in range(len(path) - 1):
+            edge = (path[i], path[i+1])
+            flows[edge] += additionalFlow
+            flows[(edge[1], edge[0])] -= additionalFlow
 
-		# Find another augmenting path with the updated flows.
-		path = _findAugmentingPath(network, capacities, flows, source, sink, [source])
+        # Find another augmenting path with the updated flows.
+        path = _findAugmentingPath(network, capacities, flows, source, sink, [source])
 
-	return sum(flows[(source, b)] for b in network.adjNodes[source])
+    return sum(flows[(source, b)] for b in network.adjNodes[source])

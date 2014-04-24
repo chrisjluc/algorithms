@@ -15,46 +15,46 @@ adjGraph = [
 ]
 
 shortestPathsFrom0 = {
-	0: 0, 
-	1: 4, 
-	2: 12, 
-	3: 19, 
-	4: 21, 
-	5: 11, 
-	6: 9, 
-	7: 8, 
-	8: 14
+    0: 0, 
+    1: 4, 
+    2: 12, 
+    3: 19, 
+    4: 21, 
+    5: 11, 
+    6: 9, 
+    7: 8, 
+    8: 14
 }
 
 class TestDijkstrasAlgorithm(unittest.TestCase):
-	def setUp(self):
-		self.graph = util.convertAdjToGraph(adjGraph)
+    def setUp(self):
+        self.graph = util.convertAdjToGraph(adjGraph)
 
-	def test_lengths(self):
-		(lengths, prev) = dijkstra(self.graph, 0)
-		self.assertEqual(lengths, shortestPathsFrom0)
+    def test_lengths(self):
+        (lengths, prev) = dijkstra(self.graph, 0)
+        self.assertEqual(lengths, shortestPathsFrom0)
 
-	def test_path(self):
-		(lengths, prev) = dijkstra(self.graph, 0)
-		self.assertEqual(util.getPathFromPrev(prev, 8), [0, 1, 2])
+    def test_path(self):
+        (lengths, prev) = dijkstra(self.graph, 0)
+        self.assertEqual(util.getPathFromPrev(prev, 8), [0, 1, 2])
 
 class TestBellmanFord(unittest.TestCase):
-	def setUp(self):
-		self.graph = util.convertAdjToGraph(adjGraph)
+    def setUp(self):
+        self.graph = util.convertAdjToGraph(adjGraph)
 
-	def test_lengths(self):
-		(lengths, prev) = bellmanFord(self.graph, 0)
-		self.assertEqual(lengths, shortestPathsFrom0)
+    def test_lengths(self):
+        (lengths, prev) = bellmanFord(self.graph, 0)
+        self.assertEqual(lengths, shortestPathsFrom0)
 
-	def test_path(self):
-		(lengths, prev) = bellmanFord(self.graph, 0)
-		self.assertEqual(util.getPathFromPrev(prev, 8), [0, 1, 2])
+    def test_path(self):
+        (lengths, prev) = bellmanFord(self.graph, 0)
+        self.assertEqual(util.getPathFromPrev(prev, 8), [0, 1, 2])
 
 class TestFloydWarshall(unittest.TestCase):
-	def setUp(self):
-		self.graph = util.convertAdjToGraph(adjGraph)
+    def setUp(self):
+        self.graph = util.convertAdjToGraph(adjGraph)
 
-	def test_lengths(self):
-		lengths = floydWarshall(self.graph)
-		l0 = {i: lengths[0][i] for i in range(9)}
-		self.assertEqual(l0, shortestPathsFrom0)
+    def test_lengths(self):
+        lengths = floydWarshall(self.graph)
+        l0 = {i: lengths[0][i] for i in range(9)}
+        self.assertEqual(l0, shortestPathsFrom0)
