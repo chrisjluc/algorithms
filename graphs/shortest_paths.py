@@ -1,27 +1,18 @@
-"""This file contains the following shortest path algorithms:
-    - Dijkstra's algorithm
-    - Bellman-Ford algorithm
-    - Floyd-Warshall algorithm
-    - A* algorithm
-"""
-
-from graph import *
+from graphs.util import MAX_WEIGHT
 from Queue import PriorityQueue
-
-MAX_LENGTH = 1000000000
 
 # Implements dijkstra's algorithm for a weighted graph. If the graph is in
 # adjacency matrix representation, convert it to a Graph object with
 # util.convertAdjToGraph. Note that this algorithm does not work for
 # graphs whose weights may contain negative numbers.
-#
+# 
 # @see http://en.wikipedia.org/wiki/Dijkstra's_algorithm
 # @param graph - A graph object
 # @param fr - The source node
 # @return dist - An dictionary of shortest path lengths from the source node to 
 # 	all other nodes.
 def dijkstra(graph, fr):
-	dist = {n: MAX_LENGTH for n in graph.nodes}
+	dist = {n: MAX_WEIGHT for n in graph.nodes}
 	dist[fr] = 0
 
 	pq = PriorityQueue()
@@ -31,7 +22,7 @@ def dijkstra(graph, fr):
 	while not pq.empty():
 		n = pq.get()[1]
 
-		for i in graph.edges[n]:
+		for i in graph.adjNodes[n]:
 			prop = dist[n] + graph.weights[(n, i)]
 			if prop < dist[i]:
 				dist[i] = prop
@@ -51,17 +42,17 @@ def dijkstra(graph, fr):
 # 	all other nodes.
 def bellmanFord(graph, fr):
 	L = len(graph.nodes)
-	dist = {n: MAX_LENGTH for n in graph.nodes}
+	dist = {n: MAX_WEIGHT for n in graph.nodes}
 	dist[fr] = 0
 
 	for i in range(L):
-		for a, adjs in graph.edges.iteritems():
+		for a, adjs in graph.adjNodes.iteritems():
 			for b in adjs:
 				if dist[a] + graph.weights[(a, b)] < dist[b]:
 					dist[b] = dist[a] + graph.weights[(a, b)]
 
 	# Check for negative-weight cycles.
-	for a, adjs in graph.edges.iteritems():
+	for a, adjs in graph.adjNodes.iteritems():
 		for b in adjs:
 			if dist[a] + graph.weights[(a, b)] < dist[b]:
 				raise Exception('Error: This graph has a negative edge weight cycle.')
@@ -77,11 +68,11 @@ def bellmanFord(graph, fr):
 # @return sp - A 2D array where sp[i][j] contains the shortest path from i to j.
 def floydWarshall(graph):
 	L = len(graph.nodes)
-	sp = [[MAX_LENGTH for x in range(L)] for x in range(L)] 
+	sp = [[MAX_WEIGHT for x in range(L)] for x in range(L)] 
 
 	for i in range(L):
 		sp[i][i] = 0
-	for a, adjs in graph.edges.iteritems():
+	for a, adjs in graph.adjNodes.iteritems():
 		for b in adjs:
 			sp[a][b] = graph.weights[(a, b)]
 
