@@ -25,8 +25,8 @@ def eratosthenes(lim=100):
 def atkins(lim=100):
     """Implements a lighty optimized Sieve of Atkins for primes < lim
     This implimentation is about 3.5x slower than the sieve_of_eratosthenes.
-    More optimization is needed to solve the quatratic forms and
-    to enforce tighter limits on loops.
+    More optimization is needed to solve the quadratic forms and
+    to enforce tighter limits on for loops.
 
     returns: list of primes < lim"""
 
