@@ -7,17 +7,22 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
 
 ###Graphs
 - Shortest Paths
-    - Dijkstra's Algorithm
-    - Bellman-Ford Algorithm
-    - Floyd-Warshall Algorithm
+    - Dijkstra's algorithm
+    - Bellman-Ford algorithm
+    - Floyd-Warshall algorithm
     
 - Maximum Flow
-    - Ford-Fulkerson Algorithm
+    - Ford-Fulkerson algorithm
 
-### Mathematics
+###Mathematics
 - Prime Sieves
     - Sieve of Eratosthenes
     - Sieve of Atkins
+
+###Strings
+- Searching
+    - Naive string search
+    - Rabin-Karp algorithm
 
 ##Contributing
 

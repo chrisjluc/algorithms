@@ -1,5 +1,4 @@
 Strings
-    - Rabin-Karp algorithm
     - Knuth-Morris-Pratt Algorithm
 
 Graphs
@@ -25,7 +24,6 @@ Geometry
     - Closest pair of points algorithm
  
 Other Math
-    - Prime sieves
     - Simplex algorithm
     - Modular exponentiation
     - Epsilon-Greedy Bandit algorithm
@@ -34,7 +32,6 @@ Other Math
         - rk45
     - Cooley-Tukey FFT
     - Least Squares
-
 
 Sorting
     - All popular sorts
