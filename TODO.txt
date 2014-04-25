@@ -32,7 +32,7 @@ Other Math
     - Finite Difference
         - Simpson's Rule
         - rk45
-    - Fast Fourier Transform (Cooley Tukey)
+    - Cooley-Tukey FFT
     - Least Squares
 
 
