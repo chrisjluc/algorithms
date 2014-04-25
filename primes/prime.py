@@ -2,10 +2,10 @@
     - Sieves of Eratosthenes (Optimized)
     - Sieve of Atkins
 """
-from math import sqrt
+from math import sqrt, ceil
 
 
-def sieve_of_eratosthenes(lim=100):
+def eratosthenes(lim=100):
     """Implements a Genuine Sieve of Eratosthenes for primes < lim
     this will easily generate primes less than 10M in around 2.5 seconds
 
@@ -23,7 +23,7 @@ def sieve_of_eratosthenes(lim=100):
     return [i for i in xrange(len(is_prime)) if is_prime[i] and i >= 2]
 
 
-def sieve_of_atkins(lim=100):
+def atkins(lim=100):
     """Implements a lighty optimized Sieve of Atkins for primes < lim
     This implimentation is about 3.5x slower than the sieve_of_eratosthenes.
     More optimization is needed to solve the quatratic forms and
@@ -33,31 +33,31 @@ def sieve_of_atkins(lim=100):
 
     is_prime = [False] * (lim + 1)
     sqrtn = int(round(sqrt(lim)))
-    for i in xrange(sqrtn + 1):
+    for i in xrange(sqrtn):
         # The following three lines are to reduce repeated calculations of x^2
         xsq = i ** 2
         x4 = 4 * xsq
         x3 = 3 * xsq
         # More work can be done to set tighter bound on loops
-        for j in xrange(sqrtn + 1):
+        for j in xrange(sqrtn):
             ysq = j ** 2
             # n = 4x^2 + y^2
             n = x4 + ysq
-            if (n <= lim) and ((n % 12 == 1) or (n % 12 == 5)):
-                is_prime[n] = True
+            if (n <= lim) and ((n % 12 == 1 or n % 12 == 5)):
+                is_prime[n] = not is_prime[n]
             # n = 3x^2 + y^2
             n = x3 + ysq
             if (n <= lim) and (n % 12 == 7):
-                is_prime[n] = True
+                is_prime[n] = not is_prime[n]
             # n = 3x^2 - y^2
             n = x3 - ysq
-            if (i > j) and (n <= lim) and (n % 12 == 11):
-                is_prime[n] = True
-
-    for n in xrange(5, int(round(lim))):
+            if  (n <= lim) and (i > j) and (n % 12 == 11):
+                is_prime[n] = not is_prime[n]
+    for n in xrange(5, sqrtn):
         if is_prime[n]:
             kn = n ** 2
-            for k in [i * kn for i in xrange(1, (lim / n ** 2 + 1))]:
+            for k in [i for i in xrange(kn, lim, kn)]:
+                print k
                 is_prime[k] = False
 
     return [2, 3] + [i for i in xrange(len(is_prime)) if is_prime[i] and i >= 5]
@@ -65,13 +65,13 @@ def sieve_of_atkins(lim=100):
 
 def main():
     import time
-    n = 1000000
+    n = 100000
     start = time.time()
-    sieve_of_eratosthenes(lim=n)
+    eratosthenes(lim=n)
     print "Sieve of Eratosthenese: ", time.time() - start
 
     start = time.time()
-    sieve_of_atkins(n)
+    atkins(n)
     print "Sieve of Atkins: ", time.time() - start
 
 if __name__ == "__main__":
