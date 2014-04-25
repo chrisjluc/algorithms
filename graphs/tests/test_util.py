@@ -16,7 +16,7 @@ adjGraph = [
 
 class TestConvertAdjToGraph(unittest.TestCase):
     def setUp(self):
-        self.graph = util.convertAdjToGraph(adjGraph)
+        self.graph = util.convert_adj_to_graph(adjGraph)
 
     def test_nodes(self):
         L = len(self.graph.nodes)
@@ -47,9 +47,9 @@ class TestConvertAdjToGraph(unittest.TestCase):
 class TestGetEdgeListFromPath(unittest.TestCase):
     def test_singleNodePath(self):
         path = ['a']
-        self.assertEqual(util.getEdgeListFromPath(path), [])
+        self.assertEqual(util.get_edge_list_from_path(path), [])
 
     def test_multiNodePath(self):
         path = ['a', 'b', 'c', 'd', 'e']
         edgeList = [('a', 'b'), ('b', 'c'), ('c', 'd'), ('d', 'e')]
-        self.assertEqual(util.getEdgeListFromPath(path), edgeList)
+        self.assertEqual(util.get_edge_list_from_path(path), edgeList)

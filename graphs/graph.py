@@ -13,15 +13,15 @@ class Graph:
         # node and b is the destination node.
         self.weights = dict()
 
-    def addNode(self, data):
+    def add_node(self, data):
         self.nodes.add(data)
 
-    def addEdge(self, fr, to, weight=0):
+    def add_edge(self, fr, to, weight=0):
         self.adjNodes[fr].append(to)
         self.weights[(fr, to)] = weight
 
 # Represents an undirected graph.
 class UndirectedGraph(Graph):
-    def addEdge(self, fr, to, weight=0):
-        Graph.addEdge(self, fr, to, weight)
+    def add_edge(self, fr, to, weight=0):
+        Graph.add_edge(self, fr, to, weight)
         self.weights[(to, fr)] = weight

@@ -28,7 +28,7 @@ shortestPathsFrom0 = {
 
 class TestDijkstrasAlgorithm(unittest.TestCase):
     def setUp(self):
-        self.graph = util.convertAdjToGraph(adjGraph)
+        self.graph = util.convert_adj_to_graph(adjGraph)
 
     def test_lengths(self):
         (lengths, prev) = dijkstra(self.graph, 0)
@@ -36,25 +36,25 @@ class TestDijkstrasAlgorithm(unittest.TestCase):
 
     def test_path(self):
         (lengths, prev) = dijkstra(self.graph, 0)
-        self.assertEqual(util.getPathFromPrev(prev, 8), [0, 1, 2])
+        self.assertEqual(util.get_path_from_prev(prev, 8), [0, 1, 2])
 
 class TestBellmanFord(unittest.TestCase):
     def setUp(self):
-        self.graph = util.convertAdjToGraph(adjGraph)
+        self.graph = util.convert_adj_to_graph(adjGraph)
 
     def test_lengths(self):
-        (lengths, prev) = bellmanFord(self.graph, 0)
+        (lengths, prev) = bellman_ford(self.graph, 0)
         self.assertEqual(lengths, shortestPathsFrom0)
 
     def test_path(self):
-        (lengths, prev) = bellmanFord(self.graph, 0)
-        self.assertEqual(util.getPathFromPrev(prev, 8), [0, 1, 2])
+        (lengths, prev) = bellman_ford(self.graph, 0)
+        self.assertEqual(util.get_path_from_prev(prev, 8), [0, 1, 2])
 
 class TestFloydWarshall(unittest.TestCase):
     def setUp(self):
-        self.graph = util.convertAdjToGraph(adjGraph)
+        self.graph = util.convert_adj_to_graph(adjGraph)
 
     def test_lengths(self):
-        lengths = floydWarshall(self.graph)
+        lengths = floyd_warshall(self.graph)
         l0 = {i: lengths[0][i] for i in range(9)}
         self.assertEqual(l0, shortestPathsFrom0)

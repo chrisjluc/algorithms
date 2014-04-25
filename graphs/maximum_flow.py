@@ -25,7 +25,7 @@ from graphs.shortest_paths import dijkstra
 from graphs import util
 from graphs.graph import *
 
-def _findAugmentingPath (graph, capacities, flows, source, sink, path):
+def _find_augmenting_path (graph, capacities, flows, source, sink, path):
     """Helper method to find an augmenting path in the graph. An augmenting path is a path whose
     flow can be increased (none of the edges in the path has a maximized flow).
 
@@ -41,12 +41,12 @@ def _findAugmentingPath (graph, capacities, flows, source, sink, path):
         return path
     for b in graph.adjNodes[source]:
         residual = capacities[(source, b)] - flows[(source, b)]
-        if residual > 0 and (source, b) not in util.getEdgeListFromPath(path):
-            res = _findAugmentingPath(graph, capacities, flows, b, sink, path + [b])
+        if residual > 0 and (source, b) not in util.get_edge_list_from_path(path):
+            res = _find_augmenting_path(graph, capacities, flows, b, sink, path + [b])
             if res != None:
                 return res
 
-def fordFulkerson (graph, source, sink):
+def ford_fulkerson (graph, source, sink):
     """Implements the Ford-Fulkerson maximum-flow algorithm.
 
     @param graph - A graph object.
@@ -57,17 +57,17 @@ def fordFulkerson (graph, source, sink):
     # Create the network. We can't use the original graph as we must add reverse edges.
     network = Graph()
     for i in graph.nodes:
-        network.addNode(i)
+        network.add_node(i)
     for (a, b) in graph.weights:
-        network.addEdge(a, b, graph.weights[(a, b)])
-        network.addEdge(b, a, 0)
+        network.add_edge(a, b, graph.weights[(a, b)])
+        network.add_edge(b, a, 0)
     capacities = network.weights
 
     # Initialize flows to zero.
     flows = {(a, b): 0 for (a, b) in network.weights}
 
     # Find the first augmenting path to add flow.
-    path = _findAugmentingPath(network, capacities, flows, source, sink, [source])
+    path = _find_augmenting_path(network, capacities, flows, source, sink, [source])
 
     # Continue until no more augmenting paths can be found.
     while path != None:
@@ -86,6 +86,6 @@ def fordFulkerson (graph, source, sink):
             flows[(edge[1], edge[0])] -= additionalFlow
 
         # Find another augmenting path with the updated flows.
-        path = _findAugmentingPath(network, capacities, flows, source, sink, [source])
+        path = _find_augmenting_path(network, capacities, flows, source, sink, [source])
 
     return sum(flows[(source, b)] for b in network.adjNodes[source])

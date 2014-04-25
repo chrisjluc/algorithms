@@ -16,7 +16,7 @@ from Queue import PriorityQueue
 def dijkstra(graph, source):
     """Implements dijkstra's algorithm for a weighted graph. If the graph is in
     adjacency matrix representation, convert it to a Graph object with
-    util.convertAdjToGraph. Note that this algorithm does not work for
+    util.convert_adj_to_graph. Note that this algorithm does not work for
     graphs whose weights may contain negative numbers.
 
     @param graph - A graph object
@@ -45,7 +45,7 @@ def dijkstra(graph, source):
 
     return dist, prev   
 
-def bellmanFord(graph, source):
+def bellman_ford(graph, source):
     """Implements the Bellman-Ford algorithm. This is slower than Dijkstra's algorithm but is
     more versatile as it can handle negative edge weights. If the graph has a cycle whose numbers
     sum to a negative number, the shortest path can continuously be reduced by one more trip around
@@ -78,7 +78,7 @@ def bellmanFord(graph, source):
 
     return dist, prev
 
-def floydWarshall(graph):
+def floyd_warshall(graph):
     """Implements the Floyd-Warshall all-pairs shortest path algorithm. This runs slower than
     Dijkstra's algorithm and should be used for a quick test or for small datasets (n < 100).
 

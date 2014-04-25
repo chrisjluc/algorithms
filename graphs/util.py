@@ -2,7 +2,7 @@ from graph import *
 
 MAX_WEIGHT = 1000000000
 
-def convertAdjToGraph (adj):
+def convert_adj_to_graph (adj):
     """Converts an adjacency matrix representation to a Graph representation.
 
     @param adj - An adjacency matrix represented using a 2D array.
@@ -12,16 +12,16 @@ def convertAdjToGraph (adj):
     L = len(adj)
 
     for i in range(L):
-        gr.addNode(i)
+        gr.add_node(i)
 
     for i in range(L):
         for j in range(L):
             if adj[i][j] != 0:
-                gr.addEdge(i, j, adj[i][j])
+                gr.add_edge(i, j, adj[i][j])
 
     return gr
 
-def getPathFromPrev (prev, target):
+def get_path_from_prev (prev, target):
     """Reconstructs the path to the target from a prev dictionary created by one of the
     shortest path algorithms. 
 
@@ -39,7 +39,7 @@ def getPathFromPrev (prev, target):
     path.reverse()
     return path
 
-def getEdgeListFromPath (path):
+def get_edge_list_from_path (path):
     """Converts a list of nodes representing a path to a list of edges.
     For example, ['a', 'b', 'c', 'd'] becomes [('a', 'b'), ('b', 'c'), ('c', 'd')]
 
