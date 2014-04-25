@@ -2,7 +2,7 @@
     - Sieves of Eratosthenes (Optimized)
     - Sieve of Atkins
 """
-from math import sqrt, ceil
+from math import sqrt
 
 
 def eratosthenes(lim=100):
@@ -33,22 +33,17 @@ def atkins(lim=100):
     is_prime = [False] * (lim + 1)
     sqrtn = int(round(sqrt(lim)))
     for i in xrange(sqrtn):
-        # The following three lines are to reduce repeated calculations of x^2
         xsq = i ** 2
         x4 = 4 * xsq
         x3 = 3 * xsq
-        # More work can be done to set tighter bound on loops
         for j in xrange(sqrtn):
             ysq = j ** 2
-            # n = 4x^2 + y^2
             n = x4 + ysq
             if (n <= lim) and ((n % 12 == 1 or n % 12 == 5)):
                 is_prime[n] = not is_prime[n]
-            # n = 3x^2 + y^2
             n = x3 + ysq
             if (n <= lim) and (n % 12 == 7):
                 is_prime[n] = not is_prime[n]
-            # n = 3x^2 - y^2
             n = x3 - ysq
             if  (n <= lim) and (i > j) and (n % 12 == 11):
                 is_prime[n] = not is_prime[n]
