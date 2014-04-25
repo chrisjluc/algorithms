@@ -28,6 +28,13 @@ Other Math
     - Prime sieves
     - Simplex algorithm
     - Modular exponentiation
+    - Epsilon-Greedy Bandit algorithm
+    - Finite Difference
+        - Simpson's Rule
+        - rk45
+    - Cooley-Tukey FFT
+    - Least Squares
+
 
 Sorting
     - All popular sorts
