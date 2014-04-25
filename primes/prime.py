@@ -7,7 +7,6 @@ from math import sqrt, ceil
 
 def eratosthenes(lim=100):
     """Implements a Genuine Sieve of Eratosthenes for primes < lim
-    this will easily generate primes less than 10M in around 2.5 seconds
 
     returns: list of primes < lim
     """
@@ -57,23 +56,6 @@ def atkins(lim=100):
         if is_prime[n]:
             kn = n ** 2
             for k in [i for i in xrange(kn, lim, kn)]:
-                print k
                 is_prime[k] = False
 
     return [2, 3] + [i for i in xrange(len(is_prime)) if is_prime[i] and i >= 5]
-
-
-def main():
-    import time
-    n = 100000
-    start = time.time()
-    eratosthenes(lim=n)
-    print "Sieve of Eratosthenese: ", time.time() - start
-
-    start = time.time()
-    atkins(n)
-    print "Sieve of Atkins: ", time.time() - start
-
-if __name__ == "__main__":
-    import sys
-    sys.exit(main())
