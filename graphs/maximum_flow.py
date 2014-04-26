@@ -108,7 +108,7 @@ def edmonds_karp (graph, source, sink):
         # Add flow to the forward edges, subtract flow from the reverse edges.
         for (u, v) in path:
             flows[(u, v)] += flow
-            flows[(v, u)] += flow
+            flows[(v, u)] -= flow
 
     # Flow to the sink is equal to the flow coming out of the source.
     return sum(flows[(source, i)] for i in network.adjNodes[source])
