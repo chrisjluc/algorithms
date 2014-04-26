@@ -4,7 +4,6 @@ Graphs
         - Kruskal's algorithm
     - Maximum bipartite matching
     - Max flow
-        - Edmond-Karp algorithm
         - Push-relabel algorithm
     - Coloring
     - Hungarian algorithm

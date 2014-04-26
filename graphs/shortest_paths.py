@@ -1,5 +1,5 @@
 """This module contains the following shortest path algorithms:
-    - Dijjkstra's (with PriorityQueue) - O(E + V*logV)
+    - Dijjkstra's with PriorityQueue - O(E + V*logV)
     - Bellman-Ford - O(V*E)
     - Floyd-Warshall - O(V^3)
 

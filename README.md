@@ -9,9 +9,9 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
     - Dijkstra's algorithm
     - Bellman-Ford algorithm
     - Floyd-Warshall algorithm
-    
 - Maximum Flow
     - Ford-Fulkerson algorithm
+    - Edmonds-Karp algorithm
 
 ####Mathematics
 - Prime Sieves

@@ -47,3 +47,16 @@ class TestFordFulkerson(unittest.TestCase):
     def testNoPath(self):
         maxFlow = ford_fulkerson(noPathGraph, 'a', 'e')
         self.assertEqual(maxFlow, 0)
+
+class TestEdmondsKarp(unittest.TestCase):
+    def testGraph1(self):
+        maxFlow = edmonds_karp(graph1, 's', 't')
+        self.assertEqual(maxFlow, 5)
+
+    def testGraph2(self):
+        maxFlow = edmonds_karp(graph2, 'x', 'y')
+        self.assertEqual(maxFlow, 3)
+
+    def testNoPath(self):
+        maxFlow = edmonds_karp(noPathGraph, 'a', 'e')
+        self.assertEqual(maxFlow, 0)
