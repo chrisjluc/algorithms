@@ -1,3 +1,15 @@
+"""This module contains the following string searching algorithms. These are algorithms that 
+find all occurences of a pattern in a body of text.
+    - Naive search - O(n*m), with n as the length of the text and m is the length of the pattern.
+    - Rabin-Karp - O(n+m) average, O(n*m) worst case
+    - Knuth-Morris-Pratt - O(n)
+
+References:
+http://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm
+http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=stringSearching
+http://www.geeksforgeeks.org/searching-for-patterns-set-2-kmp-algorithm/
+"""
+
 # Do all hashing in mod 1000000007 to avoid large numbers.
 PRIME_MOD = 1000000007
 
@@ -48,6 +60,63 @@ def rabin_karp (text, pattern, base=256):
                 ht %= PRIME_MOD
 
     return indices
+
+def knuth_morris_pratt (text, pattern):
+    """Implementation of the Knuth-Morris-Pratt algorithm for string searching. This involves
+    observing that the pattern has enough information in itself to determine where the next match
+    could possibly begin, allowing us to skip some characters. See the wiki page for more info.
+
+    @param text - The text to search in.
+    @param pattern - The pattern to search for in the text.
+    @return indices - An array of indices in the text where the pattern begins.
+    """
+    n, m = len(text), len(pattern)
+    indices = []
+
+    LPS = _compute_LPS_array(pattern)
+    i, j = 0, 0
+    while i < n:
+        if pattern[j] == text[i]:
+            j += 1
+            i += 1
+
+        if j == m:
+            indices.append(i-j)
+            j = LPS[j-1]
+        elif pattern[j] != text[i]:
+            if j != 0:
+                j = LPS[j-1]
+            else:
+                i += 1
+
+    return indices
+
+def _compute_LPS_array (pattern):
+    """Computes an array such that for each pattern[0:i], LPS[i] is the length of the longest
+    proper prefix which is also a suffix of the string.
+
+    @param pattern - Input string.
+    @return LPS[] - The LPS array of the string.
+    """
+    L = len(pattern)
+    LPS = [0]*L
+
+    # Prev is the previous longest prefix suffix.
+    i, prev = 1, 0
+
+    while i < L:
+        if pattern[i] == pattern[prev]:
+            prev += 1
+            LPS[i] = prev
+            i += 1
+        else:
+            if prev != 0:
+                prev = LPS[prev-1]
+            else:
+                LPS[i] = 0
+                i += 1
+
+    return LPS
 
 def _hash_base (text, base):
     """Hash function for a string using a given base.
