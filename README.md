@@ -1,11 +1,10 @@
-Algorithms
-========
+##Algorithms
 
 This is my attempt to create a list of algorithms for myself (and others) to learn them and to use as a reference.
 
-##Algorithms implemented
+###Algorithms implemented
 
-###Graphs
+####Graphs
 - Shortest Paths
     - Dijkstra's algorithm
     - Bellman-Ford algorithm
@@ -14,16 +13,17 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
 - Maximum Flow
     - Ford-Fulkerson algorithm
 
-###Mathematics
+####Mathematics
 - Prime Sieves
     - Sieve of Eratosthenes
     - Sieve of Atkins
 
-###Strings
+####Strings
 - Searching
     - Naive string search
     - Rabin-Karp algorithm
+    - Knuth-Morris-Pratt
 
-##Contributing
+###Contributing
 
 Please submit a pull request to add more to this repo. But if you do, please thoroughly unit test the changes to ensure that they are correct. For a list of things to do, see TODO.txt.
