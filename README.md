@@ -21,6 +21,9 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
     - Newton's Method
     - Bisection Method
     - Brent's Method
+- Signals
+    - Slow Discrete Fourier Transform
+    - Cooley Tukey Fast Fourier Transform
 
 ####Strings
 - Searching
