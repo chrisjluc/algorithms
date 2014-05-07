@@ -17,6 +17,13 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
 - Prime Sieves
     - Sieve of Eratosthenes
     - Sieve of Atkins
+- Root Finding
+    - Newton's Method
+    - Bisection Method
+    - Brent's Method
+- Signals
+    - Slow Discrete Fourier Transform
+    - Cooley Tukey Fast Fourier Transform
 
 ####Strings
 - Searching
