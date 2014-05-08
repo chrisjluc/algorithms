@@ -42,6 +42,7 @@ def newton(a, b, f, TOL=10 ** -6, NMAX=1000):
 
         if abs(fc) <= TOL:
             return c
+    return c
 
 
 def bisection(a, b, f, TOL=10 ** -6, NMAX=1000):
@@ -81,6 +82,7 @@ def bisection(a, b, f, TOL=10 ** -6, NMAX=1000):
         else:
             b = c
             fb = fc
+    return c
 
 
 def brentq(a, b, f, TOL=10 ** -6, NMAX=1000):
@@ -153,3 +155,4 @@ def brentq(a, b, f, TOL=10 ** -6, NMAX=1000):
 
         if abs(b - a) < TOL:
             return s
+    return s

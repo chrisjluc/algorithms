@@ -18,7 +18,7 @@ class TestDFT(unittest.TestCase):
 
 
 class TestArrays(unittest.TestCase):
-x
+
     def setUp(self):
         self.success = lambda x, y: sum(
             (x[i] - y[i]) ** 2 for i in xrange(len(x)))

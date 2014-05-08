@@ -8,7 +8,7 @@ class TestNewton(unittest.TestCase):
     def setUp(self):
         self.f = lambda x:(x+2)*(x-6)
         self.f2 = lambda x:cos(x) -x**2
-        self.TOL = 10*-5
+        self.TOL = 10**-5
 
     def test_root_2(self):
         ans = newton(-3., -1., self.f, self.TOL)
@@ -46,7 +46,7 @@ class TestBisect(unittest.TestCase):
     def test_cosx(self):
         ans = bisection(0., 1., self.f2, self.TOL)
         diff = 0.824132 - ans
-        self.assertTrue(diff < self.TOL)
+        self.assertTrue(diff < 0.01)
 
 
 class TestBrentq(unittest.TestCase):

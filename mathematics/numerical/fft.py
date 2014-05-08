@@ -29,7 +29,7 @@ def dft(x):
     return result
 
 
-def cooley_tukey_FFT(x):
+def cooley_tukey_fft(x):
     """Implements the Cooley-Tukey Fast Fourier Transform
 
     @params x - signal with length that is a power of two"""
@@ -40,8 +40,8 @@ def cooley_tukey_FFT(x):
     elif N <= 8:
         return dft(x)
     else:
-        X_even = cooley_tukey_FFT(x[::2])
-        X_odd = cooley_tukey_FFT(x[1::2])
+        X_even = cooley_tukey_fft(x[::2])
+        X_odd = cooley_tukey_fft(x[1::2])
         X = [0] * N
         for k in xrange(N / 2):
             twiddle = exp(-2j * pi * k / N)

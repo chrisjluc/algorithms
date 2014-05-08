@@ -1,2 +1,1 @@
-#!/usr/bin/env python
-python -m unittest discover --pattern=test_*.py
+python -m unittest discover . 'test_*.py' --verbose
