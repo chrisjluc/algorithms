@@ -25,6 +25,13 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
     - Slow Discrete Fourier Transform
     - Cooley Tukey Fast Fourier Transform
 
+####Sorts
+- Heap Sort
+- Merge Sort
+    - Recursive
+    - Iterative
+- Quick Sort
+
 ####Strings
 - Searching
     - Naive string search
