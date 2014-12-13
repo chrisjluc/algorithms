@@ -12,9 +12,9 @@ f(x) = g(x). So equation solving is the same thing as computing (or finding)
 a root of a function.
 
 References:
-
 http://en.wikipedia.org/wiki/Root-finding_algorithm
-http://en.wikipedia.org/wiki/Brent's_method"""
+http://en.wikipedia.org/wiki/Brent's_method
+"""
 
 
 def newton(a, b, f, TOL=10 ** -6, NMAX=1000):
