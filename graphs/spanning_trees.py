@@ -1,6 +1,9 @@
 """This module contains the following minimum spanning tree algorithms:
     - Prim's algorithm
+    - Kruskal's algorithm
 """
+from heapq import heappush, heappop
+from graphs.graph import SpanningTree
 from graphs.util import MAX_WEIGHT
 
 def prim(graph):
@@ -34,3 +37,46 @@ def prim(graph):
         unvisited.remove(min_edge[1])
 
     return tree
+
+def kruskal(graph):
+    """
+    Kruskal's algorithm finds a minimum spanning tree for a connected weighted graph
+    Sort edges in ascending order and continuously adds and 
+    merges trees until a spanning forest is yielded
+    @param graph - A graph object
+    @return forest - A set of spanning trees
+    """
+    h = []
+    forest = []
+    for key, weight in graph.weights.iteritems():
+        heappush(h, (weight, key))
+    sortedWeights = [heappop(h) for i in range(len(h))]
+    
+    for elem in sortedWeights:
+        weight, (fr, to) = elem;
+        cycleExists = False
+
+        for tree in forest:
+            # Detects cycles
+            if fr in tree.nodes and to in tree.nodes:
+                cycleExists = True
+                break
+            if fr in tree.nodes or to in tree.nodes:
+                tree.addEdge((fr, to))
+                # If any trees intersect, merge them
+                for i in xrange(0, len(forest)):
+                    for j in xrange(i+1, len(forest)):
+                        if len(forest[i].nodes & forest[j].nodes) > 0:
+                            forest[i].merge(forest[j])
+                            forest.remove(forest[j])
+                            break
+                break
+
+        if cycleExists:
+            continue
+        
+        # If no edge was merged and no cycle exists, create new tree
+        tree = SpanningTree()
+        tree.addEdge((fr, to))
+        forest.append(tree)
+    return forest
