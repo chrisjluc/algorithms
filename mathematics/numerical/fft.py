@@ -2,14 +2,13 @@
     - DTF (Loops) - O(N^2)
     - Cooley-Tukey - O(NlogN)
 
-    A Fourier Transform converts the sampled function from its original domain
-    (often time or position along a line) to the frequency domain.
+A Fourier Transform converts the sampled function from its original domain
+(often time or position along a line) to the frequency domain.
 
-    References:
-
-    http://en.wikipedia.org/wiki/Discrete_Fourier_transform#Spectral_analysis
-    http://jakevdp.github.io/blog/2013/08/28/understanding-the-fft/"""
-
+References:
+http://en.wikipedia.org/wiki/Discrete_Fourier_transform#Spectral_analysis
+http://jakevdp.github.io/blog/2013/08/28/understanding-the-fft/
+"""
 
 from cmath import exp, pi
 
@@ -33,7 +32,7 @@ def cooley_tukey_fft(x):
     """Implements the Cooley-Tukey Fast Fourier Transform
 
     @params x - signal with length that is a power of two"""
-    
+
     N = len(x)
     if N % 2 > 0:
         print "x must be a power of 2"

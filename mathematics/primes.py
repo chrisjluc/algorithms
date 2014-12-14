@@ -2,6 +2,7 @@
     - Sieves of Eratosthenes (Optimized)
     - Sieve of Atkins
 """
+
 from math import sqrt
 
 
@@ -28,7 +29,8 @@ def atkins(lim=100):
     More optimization is needed to solve the quadratic forms and
     to enforce tighter limits on for loops.
 
-    returns: list of primes < lim"""
+    returns: list of primes < lim
+    """
 
     is_prime = [False] * (lim + 1)
     sqrtn = int(round(sqrt(lim)))

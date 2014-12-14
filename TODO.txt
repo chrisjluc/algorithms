@@ -18,7 +18,7 @@ Geometry
     - Convex hull algorithm
     - Point-in-polygon
     - Closest pair of points algorithm
- 
+
 Other Math
     - Simplex algorithm
     - Modular exponentiation
@@ -26,7 +26,6 @@ Other Math
     - Finite Difference
         - Simpson's Rule
         - rk45
-    - Cooley-Tukey FFT
     - Least Squares
 
 Sorting

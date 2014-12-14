@@ -27,6 +27,8 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
 - Signals
     - Slow Discrete Fourier Transform
     - Cooley Tukey Fast Fourier Transform
+- Geometry
+    - 2D Convex Hull (gift wrapping algorithm)
 
 ####Sorts
 - Heap Sort

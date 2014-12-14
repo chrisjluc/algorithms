@@ -74,7 +74,7 @@ def ford_fulkerson (graph, source, sink):
     return sum(flows[(source, b)] for b in network.adjNodes[source])
 
 def edmonds_karp (graph, source, sink):
-    """Implements the Edmonds-Karp maximum-flow algorithm. This is an implementation of the 
+    """Implements the Edmonds-Karp maximum-flow algorithm. This is an implementation of the
     Ford-Fulkerson for computing the maximum flow in O(V*E^2) time. This improvement is due
     to the selection of the shortest augmenting path rather than any random one.
 
@@ -115,7 +115,7 @@ def edmonds_karp (graph, source, sink):
 
 def _find_augmenting_path (graph, capacities, flows, source, sink, path):
     """Helper method to find an augmenting path in the graph. An augmenting path is a path whose
-    flow can be increased (none of the edges in the path has a maximized flow). This is used in 
+    flow can be increased (none of the edges in the path has a maximized flow). This is used in
     the Ford-Fulkerson algorithm.
 
     @param graph - A graph object.
@@ -136,7 +136,7 @@ def _find_augmenting_path (graph, capacities, flows, source, sink, path):
                 return res
 
 def _find_path_bfs (graph, capacities, flows, source, sink):
-    """Helper method to find the shortest augmenting path in the graph. This is used in 
+    """Helper method to find the shortest augmenting path in the graph. This is used in
     the Edmonds-Karp algorithm.
     """
     queue = [source]
