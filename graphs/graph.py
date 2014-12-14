@@ -25,3 +25,20 @@ class UndirectedGraph(Graph):
     def add_edge(self, fr, to, weight=0):
         Graph.add_edge(self, fr, to, weight)
         self.weights[(to, fr)] = weight
+
+# Represents a minimal spanning tree with set of nodes and set of edge tuples
+# Used in kruskal's algorithm
+class SpanningTree:
+    def __init__(self):
+        self.nodes = set()
+        self.edges = set()
+
+    def addEdge(self, edge):
+        fr, to = edge;
+        self.nodes.add(fr)
+        self.nodes.add(to)
+        self.edges.add(edge)
+
+    def merge(self, tree):
+        self.nodes = self.nodes | tree.nodes
+        self.edges = self.edges | tree.edges

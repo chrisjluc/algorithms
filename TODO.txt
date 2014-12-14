@@ -1,7 +1,7 @@
 Graphs
-    - Minimum spanning trees
-        - Prim's algorithm
-        - Kruskal's algorithm
+    - k-Minimum spanning trees
+    - Minimum bottleneck spanning trees
+    - Maximum spanning trees
     - Maximum bipartite matching
     - Max flow
         - Push-relabel algorithm

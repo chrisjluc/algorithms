@@ -12,6 +12,9 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
 - Maximum Flow
     - Ford-Fulkerson algorithm
     - Edmonds-Karp algorithm
+- Minimum Spanning Trees
+    - Prim's algorithm
+    - Kruskal's algorithm
 
 ####Mathematics
 - Prime Sieves
