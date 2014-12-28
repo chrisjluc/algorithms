@@ -16,6 +16,11 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
     - Prim's algorithm
     - Kruskal's algorithm
 
+####Dynamic Programming
+- Strings
+    - Longest Common Subsequence
+    - Longest Common Substring
+
 ####Mathematics
 - Prime Sieves
     - Sieve of Eratosthenes
