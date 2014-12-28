@@ -4,7 +4,7 @@
     - Floyd-Warshall - O(V^3)
 
 The shortest path of a graph is the path between two nodes such that the
-sum of the weights of the edges in the path is minimized. 
+sum of the weights of the edges in the path is minimized.
 
 References:
 http://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
@@ -21,7 +21,7 @@ def dijkstra(graph, source):
 
     @param graph - A graph object
     @param source - The source node
-    @return dist - An dictionary of shortest path lengths from the source node to 
+    @return dist - An dictionary of shortest path lengths from the source node to
         all other nodes.
     """
     dist = {n: MAX_WEIGHT for n in graph.nodes}
@@ -43,18 +43,18 @@ def dijkstra(graph, source):
                 prev[i] = n
                 pq.put((prop, i))
 
-    return dist, prev   
+    return dist, prev
 
 def bellman_ford(graph, source):
     """Implements the Bellman-Ford algorithm. This is slower than Dijkstra's algorithm but is
     more versatile as it can handle negative edge weights. If the graph has a cycle whose numbers
     sum to a negative number, the shortest path can continuously be reduced by one more trip around
     this cycle. This algorithm can detect if a cycle like that exists and throws an exception if it does.
-    
+
     @throws Exception - Throws an exception if the graph contains a negative edge weight cycle.
     @param graph - A graph object
     @param source - The source node
-    @return dist - An dictionary of shortest path lengths from the source node to 
+    @return dist - An dictionary of shortest path lengths from the source node to
         all other nodes.
     """
     L = len(graph.nodes)
@@ -86,7 +86,7 @@ def floyd_warshall(graph):
     @return sp - A 2D array where sp[i][j] contains the shortest path from i to j.
     """
     L = len(graph.nodes)
-    sp = [[MAX_WEIGHT for x in range(L)] for x in range(L)] 
+    sp = [[MAX_WEIGHT for x in range(L)] for x in range(L)]
 
     for i in range(L):
         sp[i][i] = 0
