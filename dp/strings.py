@@ -1,3 +1,13 @@
+"""
+This module contains the following dp algorithms associated with sequences of elements:
+    - Longest Common Substring - O(mn)
+    - Longest Common Subsequences - O(mn)
+
+References:
+http://en.wikipedia.org/wiki/Longest_common_substring_problem
+http://en.wikipedia.org/wiki/Longest_common_subsequence_problem
+"""
+
 def longest_common_substring(a, b):
     """
         Returns set of longest common substrings 
