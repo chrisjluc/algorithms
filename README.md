@@ -4,6 +4,11 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
 
 ###Algorithms implemented
 
+####Dynamic Programming
+- Strings
+    - Longest Common Subsequence
+    - Longest Common Substring
+
 ####Graphs
 - Shortest Paths
     - Dijkstra's algorithm
@@ -15,11 +20,6 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
 - Minimum Spanning Trees
     - Prim's algorithm
     - Kruskal's algorithm
-
-####Dynamic Programming
-- Strings
-    - Longest Common Subsequence
-    - Longest Common Substring
 
 ####Mathematics
 - Prime Sieves
