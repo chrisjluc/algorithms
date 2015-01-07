@@ -2,17 +2,19 @@
 This module contains the following dp algorithms associated with sequences of elements:
     - Longest Common Substring - O(mn)
     - Longest Common Subsequences - O(mn)
+    - Levenshtein distance - O(mn)
 
 References:
 http://en.wikipedia.org/wiki/Longest_common_substring_problem
 http://en.wikipedia.org/wiki/Longest_common_subsequence_problem
+http://en.wikipedia.org/wiki/Levenshtein_distance
 """
 
 def longest_common_substring(a, b):
     """
-        Returns set of longest common substrings 
+        Returns set of longest common substrings
         which is a sequence of common elements that occupy consecutive positions.
-        Iterate through the strings and 
+        Iterate through the strings and
         assigns the length of current LC substring if the current letters match.
         Look back a diagonal to check if the letters before it matched
 
@@ -22,7 +24,7 @@ def longest_common_substring(a, b):
     ret = set()
     z = 0
     # Init with zeros
-    c = [[0 for x in range(len(b))] for x in range(len(a))] 
+    c = [[0 for x in range(len(b))] for x in range(len(a))]
     for i in xrange(0, len(a)):
         for j in xrange(0, len(b)):
             if a[i] is b[j]:
@@ -51,10 +53,10 @@ def longest_common_substring(a, b):
         substrings.add(substring)
     return substrings
 
-    
+
 def longest_common_subsequence(a, b):
     """
-        Returns set of longest common subsequences. 
+        Returns set of longest common subsequences.
         Subsequences are not required to occupy consecutive positions.
         When iterating, if elements are equal, the sequence is extended by that element
         If they're not equal the sequence is the same as previously found sequences
@@ -65,7 +67,7 @@ def longest_common_subsequence(a, b):
     if len(a) <= 0 or len(b) <= 0:
         return set()
     z = 0
-    c = [[0 for x in range(len(b))] for x in range(len(a))] 
+    c = [[0 for x in range(len(b))] for x in range(len(a))]
     for i in xrange(0, len(a)):
         for j in xrange(0, len(b)):
             if a[i] is b[j]:
@@ -96,7 +98,7 @@ def backtrack(a, b, c, i, j):
         elif j > 0:
             # Find the first matching element
             return backtrack(a, b, c, i, j - 1)
-        else: 
+        else:
             return backtrack(a, b, c, i - 1, j)
     elif a[i] is b[j]:
         # Append the matching element to the LC Subsequences
@@ -109,3 +111,39 @@ def backtrack(a, b, c, i, j):
         if c[i - 1][j] >= c[i][j - 1]:
             r = r | backtrack(a, b, c, i -1, j)
         return r
+
+def levenshtein_distance(a, b):
+    """Calculates the edit distance between two strings a and b. The edit distance is defined
+    as the minimum cost required to transform string a into string b. Operations permitted are
+    deletion, addition, and replacing of characters.
+    """
+    # If either string is empty, we must delete all characters from the other one.
+    if len(a) == 0:
+        return len(b)
+    if len(b) == 0:
+        return len(a)
+
+    # Create the matrix where dp[i][j] represents the levenshtein distance of the string
+    # prefixes a[0..(i-1)] and b[0..(j-1)].
+    dp = [[0 for x in range(len(b) + 1)] for y in range(len(a) + 1)]
+
+    # You can create the empty string by deleting all characters.
+    for i in xrange(1, len(a) + 1):
+        dp[i][0] = i
+    for j in xrange(1, len(b) + 1):
+        dp[0][j] = j
+
+    for i in xrange(1, len(a) + 1):
+        for j in xrange(1, len(b) + 1):
+            dp[i][j] = min (
+                # Consider replacement of a character.
+                dp[i - 1][j - 1] + (a[i - 1] != b[j - 1]),
+
+                # Consider insertions and deletions.
+                min (
+                    dp[i - 1][j] + 1,
+                    dp[i][j - 1] + 1
+                )
+            )
+
+    return dp[len(a)][len(b)]

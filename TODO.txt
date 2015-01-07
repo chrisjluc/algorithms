@@ -12,8 +12,8 @@ DP
     - Travelling salesman
     - Knapsack algorithm
     - Coin change algorithm
-    - Longest increasing subsequence, Levenshtein distance, Longest alternating subsequence, Longest palindrome
-    
+    - Longest increasing subsequence, Longest alternating subsequence, Longest palindrome
+
 Geometry
     - Convex hull algorithm
     - Point-in-polygon

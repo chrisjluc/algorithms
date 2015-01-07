@@ -34,3 +34,15 @@ class TestLongestCommonSubsequence(unittest.TestCase):
     def test3(self):
         actual = strings.longest_common_subsequence('cacbacabc', 'ccbacabdadc')
         self.assertEqual(actual, set(['ccbacabc']))
+
+class TestEditDistance(unittest.TestCase):
+    def testEmpty(self):
+        self.assertEqual(strings.levenshtein_distance('', ''), 0)
+        self.assertEqual(strings.levenshtein_distance('asdf', ''), 4)
+        self.assertEqual(strings.levenshtein_distance('', 'asdf'), 4)
+
+    def testRegularCases(self):
+        self.assertEqual(strings.levenshtein_distance('islander', 'slander'), 1)
+        self.assertEqual(strings.levenshtein_distance('sunday', 'saturday'), 3)
+        self.assertEqual(strings.levenshtein_distance('amanaplanacanalpanama',
+            'docnoteidissentafastneverpreventsafatnessidietoncod'), 42)
