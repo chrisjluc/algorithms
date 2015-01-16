@@ -21,7 +21,7 @@ class TestClosestPairOfPoints(unittest.TestCase):
         self.assertTrue((0, 0) in actual)
         self.assertTrue((0, 1) in actual)
 
-    def test_vertical_points(self):
+    def test_horizontal_points(self):
         P = [(1, 0), (7, 0), (0, 0), (4, 0), (9, 0)]
         actual = closest_pair_of_points.closest_pair_of_points(P)
         self.assertTrue((1, 0) in actual)
