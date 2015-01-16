@@ -6,6 +6,7 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
 
 ####Dynamic Programming
 - Strings
+    - Levenshtein Distance
     - Longest Common Subsequence
     - Longest Common Substring
 
@@ -34,6 +35,7 @@ This is my attempt to create a list of algorithms for myself (and others) to lea
     - Cooley Tukey Fast Fourier Transform
 - Geometry
     - 2D Convex Hull (gift wrapping algorithm)
+    - Closest Pair of Points
 
 ####Sorts
 - Heap Sort
