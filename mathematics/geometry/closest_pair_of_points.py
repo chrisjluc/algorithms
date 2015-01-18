@@ -3,7 +3,7 @@
         http://en.wikipedia.org/wiki/Closest_pair_of_points_problem
 """
 
-
+from util import dist_squared
 from heapq import heappush, heappop
 
 def closest_pair_of_points(P):
@@ -36,7 +36,8 @@ def closest_pair_in_subset(P):
     # Divide and conquer
     p_l = closest_pair_in_subset(left)
     p_r = closest_pair_in_subset(right)
-    # Min dist of both sides - p_min is the set of points with min distance
+    # Compare the squared dist of both sides (euclidean dist is expensive because of the square root
+    # p_min is the set of points with min distance
     d_min, p_min = (dist_pair(p_l), p_l) if dist_pair(p_l) < dist_pair(p_r) else (dist_pair(p_r), p_r)
     # Find candidate points with x < d_min from x_mid
     x_mid = P[mid]
@@ -51,19 +52,13 @@ def closest_pair_in_subset(P):
                 break
             if abs(r[1] - l[1]) >= d_min:
                 continue
-            d = dist(l, r)
+            d = dist_squared(l, r)
             if d < d_min:
                 d_min = d
                 p_min = [l, r]
     return p_min
 
-def dist(a, b):
-    """
-        Calculates Euclidean distance between points a and b
-    """
-    return ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2) ** 0.5
-
 def dist_pair(p):
     if len(p) is not 2:
         raise ValueError('Needs exactly 2 points')
-    return dist(p[0], p[1])
+    return dist_squared(p[0], p[1])
