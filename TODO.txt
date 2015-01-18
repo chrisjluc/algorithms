@@ -17,7 +17,6 @@ DP
 Geometry
     - Convex hull algorithm
     - Point-in-polygon
-    - Closest pair of points algorithm
 
 Other Math
     - Simplex algorithm
